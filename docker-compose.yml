@@ -1,0 +1,33 @@
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TIMEZONE}
+      - AUTO_UPDATE=false
+    volumes:
+      - ./config:/config
+      - ${TORRENT_FILES_FOLDER}:/downloads
+    ports:
+      - ${JACKETT_PORT:-9117}:9117
+    restart: unless-stopped
+    networks:
+      - net
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=${TIMEZONE}
+    ports:
+      - ${FLARESOLVERR_PORT:-8191}:8191
+    restart: unless-stopped
+    networks:
+      - net
+
+networks:
+  net:
+    external: false
