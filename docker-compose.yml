@@ -9,6 +9,7 @@ services:
       - AUTO_UPDATE=true
     volumes:
       - jackett-config:/config
+      - ${BLACKHOLE_PATH}:/blackhole
     ports:
       - ${JACKETT_PORT:-9117}:9117
     restart: unless-stopped
