@@ -1,8 +1,8 @@
-# Jackett Service
+# Flaresolverr Service
 
-Jackett is a torrent indexer and search service.
+FlareSolverr is a proxy server to bypass Cloudflare and DDoS-GUARD protection.
 
-For more information about Jackett click [here][Jackett Github].
+For more information about Jackett click [here][Flaresolverr Github].
 
 ## How to install and run
 
@@ -13,4 +13,4 @@ After that you can run the command:
 
 `docker-compose up -d`
 
-[Jackett Github]: https://github.com/Jackett/Jackett
+[Flaresolverr Github]: https://github.com/FlareSolverr/FlareSolverr

@@ -1,7 +1,25 @@
 services:
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    environment:
+      - PUID=${UID}
+      - PGID=${GID}
+      - TZ=${TIMEZONE}
+      - AUTO_UPDATE=true
+    volumes:
+      - jackett-config:/config
+    ports:
+      - ${JACKETT_PORT:-9117}:9117
+    restart: unless-stopped
+    networks:
+      - net
+  
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     container_name: flaresolverr
+    volumes:
+      - flaresolverr-config:/config
     environment:
       - LOG_LEVEL=info
       - TZ=${TIMEZONE}
@@ -14,3 +32,9 @@ services:
 networks:
   net:
     external: false
+
+volumes:
+  jackett-config:
+    name: jackett-config
+  flaresolverr-config:
+    name: flaresolverr-config
